@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Astro build output
+dist/
+
+# Astro generated files
+.astro/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / editor
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage / test output
+coverage/
+
+# Temporary files
+*.tmp
+*.temp
