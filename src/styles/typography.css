@@ -1,8 +1,29 @@
 body {
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+}
+
+h1,
+h2,
+h3 {
+  line-height: var(--leading-heading);
+  font-weight: 600;
+  text-wrap: balance;
 }
 
 h1 {
-  line-height: 1.2;
+  font-size: var(--text-display);
+}
+
+h2 {
+  font-size: var(--text-xl);
+}
+
+h3 {
+  font-size: var(--text-lg);
+}
+
+p {
+  max-width: var(--content-width-text);
 }

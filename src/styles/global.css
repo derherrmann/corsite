@@ -1,6 +1,12 @@
 @import './tokens.css';
 @import './typography.css';
 
+html {
+  color-scheme: light;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+
 *,
 *::before,
 *::after {
@@ -9,15 +15,42 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
 }
 
 main {
   width: min(100% - 2 * var(--page-gutter), var(--content-width));
   margin-inline: auto;
-  padding-block: var(--space-3);
+  padding-block: var(--space-5);
+}
+
+a {
+  color: var(--color-accent);
+  text-underline-offset: 0.2em;
+  transition: color var(--transition-interactive);
+}
+
+a:hover {
+  color: var(--color-primary);
 }
 
 :focus-visible {
-  outline: 2px solid currentColor;
+  outline: 3px solid var(--color-focus);
   outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-primary-soft);
+  color: var(--color-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

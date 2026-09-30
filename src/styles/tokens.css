@@ -1,7 +1,106 @@
 :root {
+  /* --------------------------------------------------
+   * Brand / landscape palette
+   * Inspired by Upper Engadin landscape:
+   * meadow, larch forest, glacial lakes, stone and snow.
+   * -------------------------------------------------- */
+
+  --color-stone-50: #f5f4ee;
+  --color-stone-100: #ece8de;
+
+  --color-ink: #172520;
+  --color-ink-muted: #53645e;
+
+  --color-meadow: #7f9678;
+  --color-meadow-soft: #dde7db;
+
+  --color-pine: #426b5c;
+  --color-pine-deep: #29463b;
+
+  --color-lake: #2d6478;
+  --color-lake-soft: #dce9ed;
+
+  --color-frost: #e8eef0;
+  --color-rock: #a8b1af;
+
+  --color-alpenglow: #c98f7e;
+
+  /* --------------------------------------------------
+   * Semantic colors
+   * Components should normally consume these tokens,
+   * rather than the raw landscape palette.
+   * -------------------------------------------------- */
+
+  --color-background: var(--color-stone-50);
+  --color-surface: #fffefa;
+  --color-surface-muted: var(--color-stone-100);
+
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-ink-muted);
+
+  --color-primary: var(--color-pine);
+  --color-primary-hover: var(--color-pine-deep);
+  --color-primary-soft: var(--color-meadow-soft);
+
+  --color-accent: var(--color-lake);
+  --color-accent-soft: var(--color-lake-soft);
+
+  --color-border: #c7d3d1;
+  --color-focus: var(--color-lake);
+
+  /* --------------------------------------------------
+   * Spacing
+   * -------------------------------------------------- */
+
   --space-1: 0.5rem;
   --space-2: 1rem;
-  --space-3: 2rem;
-  --content-width: 70rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+
+  /* --------------------------------------------------
+   * Typography
+   * -------------------------------------------------- */
+
+  --font-body: system-ui, sans-serif;
+
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+  --text-display: clamp(2.25rem, 1.7rem + 2.2vw, 4rem);
+
+  --leading-body: 1.6;
+  --leading-heading: 1.15;
+
+  /* --------------------------------------------------
+   * Layout
+   * -------------------------------------------------- */
+
+  --content-width: 72rem;
+  --content-width-text: 42rem;
   --page-gutter: clamp(1rem, 4vw, 2rem);
+
+  /* --------------------------------------------------
+   * Shape
+   * -------------------------------------------------- */
+
+  --radius-small: 0.375rem;
+  --radius-large: 1.25rem;
+  --radius-pill: 999px;
+
+  /* --------------------------------------------------
+   * Interaction
+   * -------------------------------------------------- */
+
+  --transition-interactive: 160ms ease;
+
+  /* --------------------------------------------------
+   * Layers
+   * -------------------------------------------------- */
+
+  --z-raised: 10;
+  --z-navigation: 50;
+  --z-overlay: 100;
 }
