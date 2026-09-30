@@ -63,6 +63,7 @@ const ui = navigationUi[lang];
 <style>
   .navigation-shell {
     position: relative;
+    font-family: var(--font-ui);
   }
 
   .brand {
@@ -81,7 +82,7 @@ const ui = navigationUi[lang];
   }
 
   .brand-name {
-    font-size: 1.125rem;
+    font-size: var(--text-wordmark);
     font-weight: 650;
     letter-spacing: -0.025em;
   }
@@ -89,7 +90,7 @@ const ui = navigationUi[lang];
   .brand-line {
     margin-top: 0.15rem;
     color: var(--color-text-muted);
-    font-size: 0.7rem;
+    font-size: var(--text-wordmark-detail);
     letter-spacing: 0.075em;
   }
 
@@ -152,7 +153,7 @@ const ui = navigationUi[lang];
     align-items: center;
     min-height: 3.5rem;
     color: var(--color-text);
-    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    font-size: var(--text-navigation-mobile);
     text-decoration: none;
   }
 

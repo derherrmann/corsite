@@ -1,0 +1,6 @@
+/*
+ * Add @font-face declarations here when licensed WOFF2 files are supplied.
+ * Place the files in src/assets/fonts/ and reference them with relative URLs.
+ * Use font-display: swap and declare only the weights the site uses.
+ * Then prepend those local family names to --font-sans and --font-serif in tokens.css.
+ */

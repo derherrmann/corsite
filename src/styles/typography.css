@@ -7,9 +7,15 @@ body {
 h1,
 h2,
 h3 {
-  line-height: var(--leading-heading);
-  font-weight: 600;
   text-wrap: balance;
+}
+
+h1,
+h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
 }
 
 h1 {
@@ -21,7 +27,10 @@ h2 {
 }
 
 h3 {
+  font-family: var(--font-body);
   font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: var(--leading-heading);
 }
 
 p {

@@ -63,16 +63,26 @@
    * Typography
    * -------------------------------------------------- */
 
-  --font-body: system-ui, sans-serif;
+  --font-sans: system-ui, sans-serif;
+  --font-serif: Georgia, Cambria, 'Times New Roman', serif;
+  --font-body: var(--font-sans);
+  --font-ui: var(--font-sans);
+  --font-display: var(--font-serif);
 
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.25rem;
   --text-xl: clamp(1.5rem, 1.25rem + 1vw, 2rem);
   --text-display: clamp(2.25rem, 1.7rem + 2.2vw, 4rem);
+  --text-display-hero: clamp(2.75rem, 6vw, 5.5rem);
+  --text-navigation-mobile: clamp(1.5rem, 5vw, 2.25rem);
+  --text-wordmark: 1.125rem;
+  --text-wordmark-detail: 0.7rem;
 
   --leading-body: 1.6;
   --leading-heading: 1.15;
+  --leading-display: 1.08;
+  --tracking-display: -0.025em;
 
   /* --------------------------------------------------
    * Layout
