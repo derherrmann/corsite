@@ -1,0 +1,60 @@
+---
+import { navigationUi, pageRoutes, type Locale, type PageKey } from '../../i18n/navigation';
+
+interface Props {
+  lang: Locale;
+  page: PageKey;
+}
+
+const { lang, page } = Astro.props;
+---
+
+<nav class="language-switch" aria-label={navigationUi[lang].languageLabel}>
+  <a
+    href={pageRoutes[page].de}
+    lang="de"
+    hreflang="de"
+    aria-label="Deutsch"
+    aria-current={lang === 'de' ? 'page' : undefined}
+  >DE</a>
+  <span aria-hidden="true">/</span>
+  <a
+    href={pageRoutes[page].en}
+    lang="en"
+    hreflang="en"
+    aria-label="English"
+    aria-current={lang === 'en' ? 'page' : undefined}
+  >EN</a>
+</nav>
+
+<style>
+  .language-switch {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+    white-space: nowrap;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    border-radius: var(--radius-pill);
+    color: var(--color-text-muted);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a[aria-current='page'] {
+    color: var(--color-primary-hover);
+  }
+
+  a[aria-current='page'] {
+    background: var(--color-primary-soft);
+  }
+</style>

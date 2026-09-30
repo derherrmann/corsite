@@ -1,0 +1,237 @@
+---
+import LanguageSwitch from './LanguageSwitch.astro';
+import {
+  navigationLabels,
+  navigationPages,
+  navigationUi,
+  pageRoutes,
+  type Locale,
+  type PageKey,
+} from '../../i18n/navigation';
+
+interface Props {
+  lang: Locale;
+  page: PageKey;
+}
+
+const { lang, page } = Astro.props;
+const ui = navigationUi[lang];
+---
+
+<div class="navigation-shell">
+  <a
+    class="brand"
+    href={pageRoutes.home[lang]}
+    aria-current={page === 'home' ? 'page' : undefined}
+  >
+    <span class="brand-name">Corinne</span>
+    <span class="brand-line">Free in Flow</span>
+  </a>
+
+  <nav class="desktop-links" aria-label={ui.primaryLabel}>
+    {navigationPages.map((item) => (
+      <a
+        href={pageRoutes[item][lang]}
+        aria-current={page === item ? 'page' : undefined}
+      >{navigationLabels[lang][item]}</a>
+    ))}
+  </nav>
+
+  <div class="desktop-language">
+    <LanguageSwitch lang={lang} page={page} />
+  </div>
+
+  <details class="mobile-menu">
+    <summary>
+      <span>{ui.menuLabel}</span>
+      <span class="menu-mark" aria-hidden="true">+</span>
+    </summary>
+    <div class="mobile-panel">
+      <nav class="mobile-links" aria-label={ui.primaryLabel}>
+        {navigationPages.map((item) => (
+          <a
+            href={pageRoutes[item][lang]}
+            aria-current={page === item ? 'page' : undefined}
+          >{navigationLabels[lang][item]}</a>
+        ))}
+      </nav>
+      <LanguageSwitch lang={lang} page={page} />
+    </div>
+  </details>
+</div>
+
+<style>
+  .navigation-shell {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    width: min(100% - 2 * var(--page-gutter), 80rem);
+    margin-inline: auto;
+    padding: 0.4rem 0.5rem 0.4rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+    box-shadow: 0 0.5rem 1.75rem rgb(23 37 32 / 6%);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 2.75rem;
+    border-radius: var(--radius-small);
+    color: var(--color-text);
+    line-height: 1.12;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .brand:hover {
+    color: var(--color-primary-hover);
+  }
+
+  .brand-name {
+    font-size: 1.125rem;
+    font-weight: 650;
+    letter-spacing: -0.025em;
+  }
+
+  .brand-line {
+    margin-top: 0.15rem;
+    color: var(--color-text-muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.075em;
+  }
+
+  .desktop-links,
+  .desktop-language {
+    display: none;
+  }
+
+  .mobile-menu summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 4.75rem;
+    min-height: 2.75rem;
+    padding-inline: 0.75rem;
+    border-radius: var(--radius-pill);
+    color: var(--color-text);
+    cursor: pointer;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    list-style: none;
+  }
+
+  .mobile-menu summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-menu summary:hover,
+  .mobile-menu[open] summary {
+    background: var(--color-primary-soft);
+  }
+
+  .menu-mark {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1;
+    transition: transform var(--transition-interactive);
+  }
+
+  .mobile-menu[open] .menu-mark {
+    transform: rotate(45deg);
+  }
+
+  .mobile-panel {
+    position: absolute;
+    inset-block-start: calc(100% + var(--space-1));
+    inset-inline: 0;
+    max-height: calc(100vh - 6rem);
+    max-height: calc(100dvh - 6rem);
+    overflow-y: auto;
+    padding: var(--space-2);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-large);
+    background: var(--color-surface);
+    box-shadow: 0 0.75rem 2rem rgb(23 37 32 / 9%);
+  }
+
+  .mobile-links {
+    display: grid;
+    gap: 0.2rem;
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-links a {
+    display: flex;
+    align-items: center;
+    min-height: 3.25rem;
+    padding-inline: var(--space-2);
+    border-radius: var(--radius-small);
+    color: var(--color-text);
+    font-size: var(--text-lg);
+    text-decoration: none;
+  }
+
+  .mobile-links a:hover,
+  .mobile-links a[aria-current='page'] {
+    background: var(--color-primary-soft);
+    color: var(--color-primary-hover);
+  }
+
+  .mobile-panel :global(.language-switch) {
+    justify-content: flex-end;
+    margin-top: var(--space-2);
+  }
+
+  @media (min-width: 68rem) {
+    .navigation-shell {
+      display: grid;
+      grid-template-columns: minmax(8rem, 1fr) auto minmax(7rem, 1fr);
+      gap: var(--space-2);
+      padding: 0.45rem 0.75rem 0.45rem 1.5rem;
+    }
+
+    .desktop-links {
+      display: flex;
+      align-items: center;
+      gap: 0.15rem;
+    }
+
+    .desktop-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.75rem;
+      padding-inline: 0.75rem;
+      border-radius: var(--radius-pill);
+      color: var(--color-text);
+      font-size: var(--text-sm);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .desktop-links a:hover,
+    .desktop-links a[aria-current='page'] {
+      background: var(--color-primary-soft);
+      color: var(--color-primary-hover);
+    }
+
+    .desktop-language {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+  }
+</style>

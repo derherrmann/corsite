@@ -1,13 +1,16 @@
 ---
 import '../styles/global.css';
+import Navigation from '../components/layout/Navigation.astro';
+import type { Locale, PageKey } from '../i18n/navigation';
 
 interface Props {
-  lang: 'de' | 'en';
+  lang: Locale;
+  page: PageKey;
   title: string;
   description: string;
 }
 
-const { lang, title, description } = Astro.props;
+const { lang, page, title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,8 +23,20 @@ const { lang, title, description } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <header class="site-header">
+      <Navigation lang={lang} page={page} />
+    </header>
     <main>
       <slot />
     </main>
   </body>
 </html>
+
+<style>
+  .site-header {
+    position: sticky;
+    z-index: var(--z-navigation);
+    top: 0;
+    padding-block-start: clamp(0.75rem, 2vw, 1.5rem);
+  }
+</style>
