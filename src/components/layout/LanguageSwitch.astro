@@ -43,7 +43,6 @@ const { lang, page } = Astro.props;
     justify-content: center;
     min-width: 2.75rem;
     min-height: 2.75rem;
-    border-radius: var(--radius-pill);
     color: var(--color-text-muted);
     font-weight: 600;
     text-decoration: none;
@@ -55,6 +54,8 @@ const { lang, page } = Astro.props;
   }
 
   a[aria-current='page'] {
-    background: var(--color-primary-soft);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
   }
 </style>

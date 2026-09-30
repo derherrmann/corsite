@@ -34,9 +34,8 @@ const { lang, page, title, description } = Astro.props;
 
 <style>
   .site-header {
-    position: sticky;
-    z-index: var(--z-navigation);
-    top: 0;
-    padding-block-start: clamp(0.75rem, 2vw, 1.5rem);
+    width: min(100% - 2 * var(--page-gutter), var(--content-width));
+    margin-inline: auto;
+    padding-block-start: var(--space-3);
   }
 </style>

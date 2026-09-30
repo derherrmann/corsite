@@ -63,20 +63,6 @@ const ui = navigationUi[lang];
 <style>
   .navigation-shell {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-2);
-    width: min(100% - 2 * var(--page-gutter), 80rem);
-    margin-inline: auto;
-    padding: 0.4rem 0.5rem 0.4rem 1.25rem;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-pill);
-    background: var(--color-surface);
-    background: color-mix(in srgb, var(--color-surface) 90%, transparent);
-    box-shadow: 0 0.5rem 1.75rem rgb(23 37 32 / 6%);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
   }
 
   .brand {
@@ -84,7 +70,6 @@ const ui = navigationUi[lang];
     flex-direction: column;
     justify-content: center;
     min-height: 2.75rem;
-    border-radius: var(--radius-small);
     color: var(--color-text);
     line-height: 1.12;
     text-decoration: none;
@@ -113,15 +98,20 @@ const ui = navigationUi[lang];
     display: none;
   }
 
+  .mobile-menu {
+    display: block;
+  }
+
   .mobile-menu summary {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
     min-width: 4.75rem;
     min-height: 2.75rem;
-    padding-inline: 0.75rem;
-    border-radius: var(--radius-pill);
     color: var(--color-text);
     cursor: pointer;
     font-size: var(--text-sm);
@@ -135,14 +125,13 @@ const ui = navigationUi[lang];
 
   .mobile-menu summary:hover,
   .mobile-menu[open] summary {
-    background: var(--color-primary-soft);
+    color: var(--color-primary-hover);
   }
 
   .menu-mark {
     font-size: 1.5rem;
     font-weight: 400;
     line-height: 1;
-    transition: transform var(--transition-interactive);
   }
 
   .mobile-menu[open] .menu-mark {
@@ -150,60 +139,50 @@ const ui = navigationUi[lang];
   }
 
   .mobile-panel {
-    position: absolute;
-    inset-block-start: calc(100% + var(--space-1));
-    inset-inline: 0;
-    max-height: calc(100vh - 6rem);
-    max-height: calc(100dvh - 6rem);
-    overflow-y: auto;
-    padding: var(--space-2);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-large);
-    background: var(--color-surface);
-    box-shadow: 0 0.75rem 2rem rgb(23 37 32 / 9%);
+    padding-block: var(--space-4) var(--space-3);
   }
 
   .mobile-links {
     display: grid;
-    gap: 0.2rem;
-    padding-bottom: var(--space-2);
-    border-bottom: 1px solid var(--color-border);
+    gap: var(--space-1);
   }
 
   .mobile-links a {
     display: flex;
     align-items: center;
-    min-height: 3.25rem;
-    padding-inline: var(--space-2);
-    border-radius: var(--radius-small);
+    min-height: 3.5rem;
     color: var(--color-text);
-    font-size: var(--text-lg);
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
     text-decoration: none;
   }
 
   .mobile-links a:hover,
   .mobile-links a[aria-current='page'] {
-    background: var(--color-primary-soft);
     color: var(--color-primary-hover);
   }
 
+  .mobile-links a[aria-current='page'] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.25em;
+  }
+
   .mobile-panel :global(.language-switch) {
-    justify-content: flex-end;
-    margin-top: var(--space-2);
+    margin-top: var(--space-4);
   }
 
   @media (min-width: 68rem) {
     .navigation-shell {
       display: grid;
-      grid-template-columns: minmax(8rem, 1fr) auto minmax(7rem, 1fr);
+      grid-template-columns: minmax(8rem, 1fr) auto auto;
+      align-items: center;
       gap: var(--space-2);
-      padding: 0.45rem 0.75rem 0.45rem 1.5rem;
     }
 
     .desktop-links {
       display: flex;
       align-items: center;
-      gap: 0.15rem;
+      gap: clamp(0.75rem, 1.4vw, 1.5rem);
     }
 
     .desktop-links a {
@@ -211,8 +190,6 @@ const ui = navigationUi[lang];
       align-items: center;
       justify-content: center;
       min-height: 2.75rem;
-      padding-inline: 0.75rem;
-      border-radius: var(--radius-pill);
       color: var(--color-text);
       font-size: var(--text-sm);
       text-decoration: none;
@@ -221,13 +198,19 @@ const ui = navigationUi[lang];
 
     .desktop-links a:hover,
     .desktop-links a[aria-current='page'] {
-      background: var(--color-primary-soft);
       color: var(--color-primary-hover);
+    }
+
+    .desktop-links a[aria-current='page'] {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.5em;
     }
 
     .desktop-language {
       display: flex;
       justify-content: flex-end;
+      margin-inline-start: var(--space-3);
     }
 
     .mobile-menu {

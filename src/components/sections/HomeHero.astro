@@ -1,0 +1,64 @@
+---
+interface Props {
+  heading: string;
+}
+
+const { heading } = Astro.props;
+---
+
+<section class="home-hero" aria-labelledby="home-heading">
+  <div class="hero-intro">
+    <h1 id="home-heading">{heading}</h1>
+    <p>Free in Flow</p>
+  </div>
+  <!-- Reserved for an owner-provided Upper Engadin photograph. -->
+  <div class="hero-media" aria-hidden="true"></div>
+</section>
+
+<style>
+  .hero-intro {
+    display: grid;
+    gap: var(--space-2);
+    padding-block-end: var(--space-4);
+  }
+
+  h1 {
+    max-width: 12ch;
+    margin: 0;
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    letter-spacing: -0.045em;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: var(--text-lg);
+    font-weight: 500;
+  }
+
+  .hero-media {
+    min-height: 24rem;
+    aspect-ratio: 4 / 5;
+    background: var(--color-frost);
+  }
+
+  @media (min-width: 48rem) {
+    .hero-intro {
+      grid-template-columns: minmax(0, 2fr) minmax(10rem, 1fr);
+      align-items: end;
+      gap: var(--space-4);
+      padding-block-end: var(--space-5);
+    }
+
+    .hero-intro p {
+      justify-self: end;
+      padding-block-end: 0.35em;
+    }
+
+    .hero-media {
+      min-height: 30rem;
+      max-height: 45rem;
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>
