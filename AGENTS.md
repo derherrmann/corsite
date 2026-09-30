@@ -20,6 +20,20 @@ The project should remain a lightweight, mostly static website.
 
 ---
 
+## Working Brand
+
+The current working brand is:
+
+Corinne
+Free in Flow
+
+Treat this as a temporary text-based wordmark.
+
+Do not create a graphical logo or permanently encode this naming into
+architectural abstractions. It may change before launch.
+
+---
+
 # Core Principles
 
 When making implementation decisions, prefer:
