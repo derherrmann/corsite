@@ -1,0 +1,23 @@
+@import './tokens.css';
+@import './typography.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  width: min(100% - 2 * var(--page-gutter), var(--content-width));
+  margin-inline: auto;
+  padding-block: var(--space-3);
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
