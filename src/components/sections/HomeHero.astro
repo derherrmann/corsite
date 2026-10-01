@@ -1,9 +1,17 @@
 ---
+import { Image } from 'astro:assets';
+import pathPhoto from '../../assets/images/nature/entlang-dem-inn.jpg';
+import type { Locale } from '../../i18n/navigation';
+
 interface Props {
   heading: string;
+  lang: Locale;
 }
 
-const { heading } = Astro.props;
+const { heading, lang } = Astro.props;
+const imageAlt = lang === 'de'
+  ? 'Weg durch den alpinen Wald mit Bergen im Oberengadin'
+  : 'Path through an alpine forest with mountains in the Upper Engadin';
 ---
 
 <section class="home-hero" aria-labelledby="home-heading">
@@ -11,8 +19,19 @@ const { heading } = Astro.props;
     <h1 id="home-heading">{heading}</h1>
     <p>Free in Flow</p>
   </div>
-  <!-- Reserved for an owner-provided Upper Engadin photograph. -->
-  <div class="hero-media" aria-hidden="true"></div>
+  <div class="hero-media">
+    <Image
+      src={pathPhoto}
+      alt={imageAlt}
+      width={1920}
+      height={1440}
+      widths={[480, 720, 960, 1440, 1920, 2400]}
+      sizes="(min-width: 76rem) 72rem, calc(100vw - 2rem)"
+      quality={80}
+      priority
+      class="hero-image"
+    />
+  </div>
 </section>
 
 <style>
@@ -36,9 +55,16 @@ const { heading } = Astro.props;
   }
 
   .hero-media {
-    min-height: 24rem;
-    aspect-ratio: 4 / 5;
-    background: var(--color-frost);
+    height: max(72svh, 25rem);
+    overflow: hidden;
+  }
+
+  .hero-media :global(.hero-image) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 52% 60%;
   }
 
   @media (min-width: 48rem) {
@@ -55,9 +81,7 @@ const { heading } = Astro.props;
     }
 
     .hero-media {
-      min-height: 30rem;
-      max-height: 45rem;
-      aspect-ratio: 16 / 9;
+      height: clamp(48rem, 82svh, 60rem);
     }
   }
 </style>

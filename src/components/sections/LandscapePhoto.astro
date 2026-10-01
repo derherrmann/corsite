@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import lakePhoto from '../../assets/images/nature/lej-da-vadret.jpg';
+import type { Locale } from '../../i18n/navigation';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const imageAlt = lang === 'de'
+  ? 'Türkiser Lej da Vadret vor vergletscherten Bergen'
+  : 'Turquoise Lej da Vadret beneath snow-covered mountains';
+---
+
+<figure class="landscape-photo">
+  <Image
+    src={lakePhoto}
+    alt={imageAlt}
+    width={1920}
+    height={1440}
+    widths={[480, 720, 960, 1440, 1920, 2400]}
+    sizes="(min-width: 76rem) 72rem, calc(100vw - 2rem)"
+    quality={80}
+    loading="lazy"
+    class="landscape-image"
+  />
+</figure>
+
+<style>
+  .landscape-photo {
+    margin: var(--space-5) 0 0;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .landscape-photo :global(.landscape-image) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+  }
+
+  @media (min-width: 48rem) {
+    .landscape-photo {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>

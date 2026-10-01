@@ -23,5 +23,5 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# images
-src/assets/images/
+# local assets
+local-assets/
