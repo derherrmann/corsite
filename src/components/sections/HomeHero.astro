@@ -12,6 +12,8 @@ const { heading, lang } = Astro.props;
 const imageAlt = lang === 'de'
   ? 'Weg durch den alpinen Wald mit Bergen im Oberengadin'
   : 'Path through an alpine forest with mountains in the Upper Engadin';
+// On mobile, cover can size the 4:3 image by height: 72svh × 4/3 = 96svh.
+// The 33.333rem floor covers the existing 25rem minimum hero height.
 ---
 
 <section class="home-hero" aria-labelledby="home-heading">
@@ -23,10 +25,10 @@ const imageAlt = lang === 'de'
     <Image
       src={pathPhoto}
       alt={imageAlt}
+      layout="full-width"
       width={1920}
       height={1440}
-      widths={[480, 720, 960, 1440, 1920, 2400]}
-      sizes="(min-width: 76rem) 72rem, calc(100vw - 2rem)"
+      sizes="(max-width: 47.999rem) max(100vw, 96svh, 33.333rem), 100vw"
       quality={80}
       priority
       class="hero-image"
